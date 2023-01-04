@@ -6,11 +6,13 @@ RUN apt-get update \
     && apt-get install -y \
         apt-utils \
     && apt-get install -y \
-        libpq-dev libzip-dev \
+        libpq-dev libzip-dev libicu-dev \
         curl wget nano mc \
         sudo cron git \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
     && docker-php-ext-install -j$(nproc) zip \
     && docker-php-ext-install -j$(nproc) pgsql \
     && docker-php-ext-install -j$(nproc) pdo_pgsql

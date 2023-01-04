@@ -42,7 +42,7 @@ services:
     ports:
       - "5818:5432"
     volumes:
-      - ./.docker/conf/postgres/:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/postgresql/data:rw
     networks:
       - rts_818_net
 
@@ -57,9 +57,12 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGA_DEF_PASSWORD}
       PGADMIN_DEFAULT_EMAIL: ${PGA_DEF_EMAIL}
     ports:
-      - "10809:80"
+      - "10818:80"
     networks:
       - rts_818_net
+
+volumes:
+  db-data:
 
 networks:
   rts_818_net:
