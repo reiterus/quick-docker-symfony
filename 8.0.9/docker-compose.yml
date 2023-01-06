@@ -42,7 +42,7 @@ services:
     ports:
       - "5809:5432"
     volumes:
-      - ./.docker/conf/postgres/:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/postgresql/data:rw
     networks:
       - rts_809_net
 
@@ -60,6 +60,9 @@ services:
       - "10809:80"
     networks:
       - rts_809_net
+
+volumes:
+  db-data:
 
 networks:
   rts_809_net:
